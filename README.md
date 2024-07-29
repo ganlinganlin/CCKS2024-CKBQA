@@ -26,7 +26,6 @@
 - Ubuntu 22.04、CUDA 11.7
 - Create a environment
   ```
-  cd CCKS2024-CKBQA
   conda create -n kbqa388 python=3.8.8
   conda activate kbqa388
   pip install torch==1.13.1+cu117 torchvision==0.14.1+cu117 torchaudio==0.13.1 --extra-index-url https://download.pytorch.org/whl/cu117
@@ -45,7 +44,6 @@
 - Download the LLMs from [LLaMa2-7b](https://huggingface.co/meta-llama/Llama-2-7b-hf) to `meta-llama/Llama-2-7b-hf/`
 - Fine-tuning datasets for large language models
   ```
-  cd CCKS2024-CKBQA
   python llm_datasets.py
   ```
 
@@ -58,7 +56,6 @@
 - Beam-setting LLMs for Logical Form Generation (The generated_predictions.jsonl will be saved as `Reading/logical-form-generation/`)
 - Data processing (The beam_test_gen_statistics.json and beam_test_top_k_predictions.json will be saved as `Reading/logical-form-generation/test/`)
   ```
-  cd CCKS2024-CKBQA
   CUDA_VISIBLE_DEVICES=0 nohup python -u LLMs/LLaMA/src/train_bash.py --stage sft --model_name_or_path meta-llama/Llama-2-7b-hf --do_train  --dataset_dir LLMs/data_tianchi --dataset train --template llama2  --finetuning_type lora --lora_target q_proj,v_proj --output_dir Reading/logical-form-generation/checkpoint --overwrite_cache --per_device_train_batch_size 4 --gradient_accumulation_steps 4  --lr_scheduler_type cosine --logging_steps 10 --save_steps 1000 --learning_rate 5e-5  --num_train_epochs 100.0  --plot_loss  --fp16 >> Sexpr_train_LLaMA2-7b_LoRA_epoch100.txt 2>&1 &
   ```
   ```
@@ -72,7 +69,7 @@
 
 - gStore http api 
   ```
-  cd CCKS2024-CKBQA/python-api/example
+  cd python-api/example
   python POST-example.py
   ```
 
