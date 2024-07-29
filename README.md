@@ -66,11 +66,9 @@
   ```
 
 
+## 3. Retrieval & Evaluation
 
-
-## 5. Retrieval & Evaluation
-
-### 5.1 **Evaluate KBQA result with Retrieval**
+### 3.1 **Evaluate KBQA result with Retrieval**
 
 - gStore http api 
   ```
